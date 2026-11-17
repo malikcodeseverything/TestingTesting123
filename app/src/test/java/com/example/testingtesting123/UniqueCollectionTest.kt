@@ -2,6 +2,7 @@ package com.example.testingtesting123
 
 import org.junit.Before
 import org.junit.Test
+import org.junit.Assert.assertEquals
 
 class UniqueCollectionTest {
 
@@ -16,6 +17,12 @@ class UniqueCollectionTest {
     // TODO 1: Write a test to ensure items can be added to the collection
     @Test
     fun addAnItem() {
+        val currentSize = collection.size()
+
+        collection.addItem(Item("item1"))
+
+        val newSize = collection.size()
+        assert(newSize == currentSize + 1 && collection.get(newSize - 1) == (Item("item1")))
 
     }
 
@@ -23,6 +30,13 @@ class UniqueCollectionTest {
     // Uniqueness is determined by the Item.name property, which is set via the constructor
     @Test
     fun addUniqueItem() {
+        collection.addItem(Item("item1"))
+        collection.addItem(Item("item2"))
+        collection.addItem(Item("item3"))
+
+
+        assert(collection.size() == 2) { "Third item was added" }
+        assert(collection.get(0) != collection.get(1)) { "2 items match" }
 
     }
 
